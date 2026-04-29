@@ -1,0 +1,68 @@
+{
+  "summary": "Document technique relatif à l’équipement en mobilier du nouvel Hôpital Ibn Sina de Rabat, lot 4 (Tour R+10, internat et accueil principal). Il décrit 51 prix/articles de mobilier, sièges, tables, rangements, lits, accessoires de décoration et éléments administratifs, avec dimensions, matériaux, finitions, marques ou références indicatives, et une unité de paiement à l’unité.",
+  "entities": [
+    {
+      "code": "4.1",
+      "name": "Bureau B1",
+      "category": "Bureau",
+      "description": "Fourniture et pose d’un bureau droit avec caisson sur roulettes à 3 tiroirs et fermeture centralisée.",
+      "dimensions": [
+        "160 x 80 x 74 cm environ",
+        "Caisson : 42 x 60 x 56 cm environ"
+      ],
+      "materials": [
+        "Piètement en acier soudé et/ou plié",
+        "Pieds en section rectangulaire 50 x 30 avec traverses métalliques",
+        "Plateau en panneaux de particules mélaminés ép. 19 mm avec chants ABS/PVC 2 mm",
+        "Caisson en mélaminé 19 mm avec chants ABS/PVC",
+        "Coulisses à billes"
+      ],
+      "features": [
+        "Vérins de réglage",
+        "Voile de fond",
+        "Gestion des câbles par goulotte métallique et/ou passe-câbles intégrés",
+        "Caisson sur roulettes",
+        "3 tiroirs",
+        "Fermeture centralisée",
+        "Mesures avec tolérance ±5%",
+        "Coloris et finition au choix du Maître d’Ouvrage Délégué"
+      ],
+      "brand": "sur mesure",
+      "reference": "",
+      "unit": "unité"
+    },
+    {
+      "code": "4.2",
+      "name": "Bureau Bench 2P BE1",
+      "category": "Bureau bench",
+      "description": "Fourniture et pose d’un bureau bench 2 personnes avec caisson, écrans de séparation et gestion des câbles.",
+      "dimensions": [
+        "140 x 140 x 74 cm environ",
+        "Caisson : 42 x 60 x 56 cm environ"
+      ],
+      "materials": [
+        "Piètement pont en tube d’acier rectangulaire 50 x 30 ép. 1,5 mm",
+        "Traverses horizontales tubulaires métalliques carrées 40 x 40 mm",
+        "Plateau en mélaminé ennobli ép. 19 mm avec chant PVC 2 mm",
+        "Longerons en tube d’acier carré 40 x 40 mm avec connecteurs chromés",
+        "Écrans de séparation frontaux en plexiglas",
+        "Goulottes en acier laminé à froid",
+        "Caisson en mélaminé 19 mm avec chants ABS/PVC",
+        "Coulisses à billes"
+      ],
+      "features": [
+        "Vérins réglables",
+        "Séparateurs frontaux arrondis",
+        "Top access non équipé",
+        "Caisson sur roulettes",
+        "3 tiroirs",
+        "Fermeture centralisée",
+        "Mesures avec tolérance ±5%",
+        "Coloris et finition au choix du Maître d’Ouvrage Délégué"
+      ],
+      "brand": "sur mesure",
+      "reference": "",
+      "unit": "unité"
+    }
+    ]
+     }
