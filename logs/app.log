@@ -1,0 +1,7 @@
+2026-04-29 11:49:15,740 - INFO - Loading SDXL model...
+2026-04-29 11:49:58,575 - INFO - Processing 2 products from C:\Users\anouar\Downloads\test_api\data\products.json
+2026-04-29 11:49:58,589 - INFO - [############------------] 1/2 Generating images for 'Bureau B1'
+2026-04-29 11:57:27,355 - INFO - Saved 1 image(s) for 'Bureau B1': C:\Users\anouar\Downloads\test_api\outputs\bureau-b1-4-1.png
+2026-04-29 11:57:27,356 - INFO - [########################] 2/2 Generating images for 'Bureau Bench 2P BE1'
+2026-04-29 12:05:15,475 - INFO - Saved 1 image(s) for 'Bureau Bench 2P BE1': C:\Users\anouar\Downloads\test_api\outputs\bureau-bench-2p-be1-4-2.png
+2026-04-29 12:05:15,489 - INFO - Completed batch generation. Success: 2, skipped/failed: 0.

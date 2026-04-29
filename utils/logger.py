@@ -1,27 +1,30 @@
 import logging
-import os
+from pathlib import Path
 
-def setup_logger():
-    # 📁 إنشاء dossier logs
-    os.makedirs("logs", exist_ok=True)
+
+BASE_DIR = Path(__file__).resolve().parents[1]
+LOG_DIR = BASE_DIR / "logs"
+LOG_FILE = LOG_DIR / "app.log"
+
+
+def setup_logger() -> logging.Logger:
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
 
     logger = logging.getLogger("ai_project")
+    if logger.handlers:
+        return logger
+
     logger.setLevel(logging.INFO)
+    logger.propagate = False
 
-    # 📝 format ديال logs
-    formatter = logging.Formatter(
-        "%(asctime)s - %(levelname)s - %(message)s"
-    )
+    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 
-    # 📄 log file
-    file_handler = logging.FileHandler("logs/app.log")
+    file_handler = logging.FileHandler(LOG_FILE, encoding="utf-8")
     file_handler.setFormatter(formatter)
 
-    # 🖥️ terminal output
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(formatter)
 
-    # إضافة handlers
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
 
