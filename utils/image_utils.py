@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import re
+from urllib.parse import urlparse
+from urllib.request import urlretrieve
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -46,3 +48,21 @@ def save_generated_images(
         saved_paths.append(output_path)
 
     return saved_paths
+
+
+def download_image(image_url: str, output_dir: Path, output_stem: str) -> Path:
+    if not image_url or not image_url.strip():
+        raise ValueError("Image URL must not be empty.")
+
+    ensure_directory(output_dir)
+
+    parsed_url = urlparse(image_url)
+    suffix = Path(parsed_url.path).suffix or ".png"
+    output_path = output_dir / f"{output_stem}{suffix}"
+
+    try:
+        urlretrieve(image_url, output_path)
+    except Exception as exc:
+        raise RuntimeError(f"Unable to download image from URL: {image_url}") from exc
+
+    return output_path

@@ -5,3 +5,27 @@
 2026-04-29 11:57:27,356 - INFO - [########################] 2/2 Generating images for 'Bureau Bench 2P BE1'
 2026-04-29 12:05:15,475 - INFO - Saved 1 image(s) for 'Bureau Bench 2P BE1': C:\Users\anouar\Downloads\test_api\outputs\bureau-bench-2p-be1-4-2.png
 2026-04-29 12:05:15,489 - INFO - Completed batch generation. Success: 2, skipped/failed: 0.
+2026-04-29 12:55:09,536 - INFO - Processing 2 products from C:\Users\anouar\Downloads\test_api\data\products.json with DALL-E 3
+2026-04-29 12:55:09,536 - INFO - [############------------] 1/2 Generating images for 'Bureau B1'
+2026-04-29 12:55:49,155 - INFO - Saved 1 image(s) for 'Bureau B1': C:\Users\anouar\Downloads\test_api\outputs\bureau-b1-4-1.png
+2026-04-29 12:55:49,155 - INFO - [########################] 2/2 Generating images for 'Bureau Bench 2P BE1'
+2026-04-29 12:56:06,262 - INFO - Saved 1 image(s) for 'Bureau Bench 2P BE1': C:\Users\anouar\Downloads\test_api\outputs\bureau-bench-2p-be1-4-2.png
+2026-04-29 12:56:06,262 - INFO - Completed batch generation. Success: 2, skipped/failed: 0.
+2026-04-29 13:04:54,087 - INFO - Processing 2 products from C:\Users\anouar\Downloads\test_api\data\products.json with DALL-E 3
+2026-04-29 13:04:54,089 - INFO - [############------------] 1/2 Generating images for 'Bureau B1'
+2026-04-29 13:05:31,720 - INFO - Saved 1 image(s) for 'Bureau B1': C:\Users\anouar\Downloads\test_api\outputs\bureau-b1-4-1.png
+2026-04-29 13:05:31,720 - INFO - [########################] 2/2 Generating images for 'Bureau Bench 2P BE1'
+2026-04-29 13:06:21,231 - INFO - Saved 1 image(s) for 'Bureau Bench 2P BE1': C:\Users\anouar\Downloads\test_api\outputs\bureau-bench-2p-be1-4-2.png
+2026-04-29 13:06:21,231 - INFO - Completed batch generation. Success: 2, skipped/failed: 0.
+2026-04-29 13:07:43,998 - INFO - Processing 2 products from C:\Users\anouar\Downloads\test_api\data\products.json with DALL-E 3
+2026-04-29 13:07:44,000 - INFO - [############------------] 1/2 Generating images for 'Bureau B1'
+2026-04-29 13:09:03,945 - INFO - Saved 3 image(s) for 'Bureau B1': C:\Users\anouar\Downloads\test_api\outputs\bureau-b1-4-1_1.png, C:\Users\anouar\Downloads\test_api\outputs\bureau-b1-4-1_2.png, C:\Users\anouar\Downloads\test_api\outputs\bureau-b1-4-1_3.png
+2026-04-29 13:09:03,945 - INFO - [########################] 2/2 Generating images for 'Bureau Bench 2P BE1'
+2026-04-29 13:10:50,240 - INFO - Saved 3 image(s) for 'Bureau Bench 2P BE1': C:\Users\anouar\Downloads\test_api\outputs\bureau-bench-2p-be1-4-2_1.png, C:\Users\anouar\Downloads\test_api\outputs\bureau-bench-2p-be1-4-2_2.png, C:\Users\anouar\Downloads\test_api\outputs\bureau-bench-2p-be1-4-2_3.png
+2026-04-29 13:10:50,241 - INFO - Completed batch generation. Success: 2, skipped/failed: 0.
+2026-04-29 13:16:50,558 - INFO - Processing 2 products from C:\Users\anouar\Downloads\test_api\data\products.json with DALL-E 3
+2026-04-29 13:16:50,560 - INFO - [############------------] 1/2 Generating images for 'Bureau B1'
+2026-04-29 13:18:11,807 - INFO - Saved 3 image(s) for 'Bureau B1': C:\Users\anouar\Downloads\test_api\outputs\bureau-b1-4-1_1.png, C:\Users\anouar\Downloads\test_api\outputs\bureau-b1-4-1_2.png, C:\Users\anouar\Downloads\test_api\outputs\bureau-b1-4-1_3.png
+2026-04-29 13:18:11,808 - INFO - [########################] 2/2 Generating images for 'Bureau Bench 2P BE1'
+2026-04-29 13:19:40,547 - INFO - Saved 3 image(s) for 'Bureau Bench 2P BE1': C:\Users\anouar\Downloads\test_api\outputs\bureau-bench-2p-be1-4-2_1.png, C:\Users\anouar\Downloads\test_api\outputs\bureau-bench-2p-be1-4-2_2.png, C:\Users\anouar\Downloads\test_api\outputs\bureau-bench-2p-be1-4-2_3.png
+2026-04-29 13:19:40,547 - INFO - Completed batch generation. Success: 2, skipped/failed: 0.

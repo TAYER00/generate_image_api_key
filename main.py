@@ -5,8 +5,8 @@ import json
 from pathlib import Path
 from typing import Any
 
-from models.sdxl import load_model
-from utils.image_utils import build_output_stem, save_generated_images
+from models.dalle import generate_image, get_client
+from utils.image_utils import build_output_stem, download_image
 from utils.logger import setup_logger
 
 
@@ -18,7 +18,7 @@ DEFAULT_ENVIRONMENT = "hospital office / workspace environment"
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Generate one or more SDXL product images from a JSON file."
+        description="Generate one or more DALL-E 3 product images from a JSON file."
     )
     parser.add_argument(
         "--input",
@@ -34,19 +34,7 @@ def parse_args() -> argparse.Namespace:
         "--images-per-product",
         type=int,
         default=1,
-        help="Number of images to generate for each product.",
-    )
-    parser.add_argument(
-        "--num-inference-steps",
-        type=int,
-        default=7,
-        help="Number of diffusion inference steps.",
-    )
-    parser.add_argument(
-        "--guidance-scale",
-        type=float,
-        default=3.0,
-        help="Guidance scale used by the diffusion pipeline.",
+        help="Number of images to generate for each product via DALL-E 3.",
     )
     return parser.parse_args()
 
@@ -134,54 +122,32 @@ def _extract_material_phrase(product: dict[str, Any]) -> str:
 
 def generate_prompt(product: dict[str, Any]) -> str:
     product_type = _extract_product_type(product)
-    environment = str(product.get("environment", DEFAULT_ENVIRONMENT)).strip() or DEFAULT_ENVIRONMENT
     material_phrase = _extract_material_phrase(product)
     visual_description = _extract_visual_description(product)
 
     return (
-        f"A ultra realistic commercial product photography of a {product_type} placed in a real {environment}. "
-        f"The product must be physically correct, fully visible, and occupy most of the frame (at least 70%). "
-        f"It is NOT symbolic or abstract, it is a real manufactured object with precise industrial design."
-        f"\n\nOBJECT DETAILS:\n"
+        f"Ultra realistic isolated product photography of a {product_type}. "
+        f"The product is centered, fully visible, and occupies most of the image."
+
+        f"\n\nPRODUCT DESCRIPTION:\n"
         f"- Materials: {material_phrase}\n"
-        f"- Visual structure: {visual_description}\n"
-        f"\n\nRENDERING REQUIREMENTS:\n"
-        "The object is placed directly on a real floor surface with correct physical contact. "
-        "Accurate proportions and engineering realism must be respected. "
-        "All components described must be visible (legs, structure, storage, surfaces, edges). "
-        "No missing parts, no simplified geometry."
-        f"\n\nCAMERA & LIGHTING:\n"
-        "Professional furniture photography, 35mm lens, eye-level perspective. "
-        "Soft natural daylight mixed with studio lighting. "
-        "Realistic shadows under the object. "
-        "Shallow depth of field but entire product remains sharp."
-        f"\n\nSCENE:\n"
-        "Modern real-world interior (hospital office / workspace environment). "
-        "No empty studio void. No floating object. No white isolated background. "
-        "The environment must feel lived-in and realistic."
-        f"\n\nNEGATIVE CONSTRAINTS (IMPORTANT):\n"
-        "NO cartoon, NO CGI look, NO abstract rendering, NO minimal empty scene, "
-        "NO cropped furniture, NO floating object, NO text, NO watermark, NO people."
+        f"- Structure: {visual_description}\n"
+
+        f"\n\nRENDER STYLE:\n"
+        "Pure white seamless studio background. "
+        "No environment, no room, no context, no furniture scene. "
+        "Product only, isolated like an e-commerce catalog image. "
+        "Soft studio lighting with minimal natural shadow under the product. "
+        "High detail, sharp focus, professional commercial photography."
+
+        f"\n\nSTRICT NEGATIVE CONSTRAINTS:\n"
+        "No background objects, no room, no office, no interior, "
+        "no furniture scene, no decoration, no people, no text, "
+        "no watermark, no logo, no blur, no CGI, no cartoon style."
+
         f"\n\nFINAL GOAL:\n"
-        "A realistic furniture catalog product image suitable for architectural or commercial use."
+        "Pure e-commerce product image on white background for catalog use."
     )
-
-
-def generate_image(
-    pipe: Any,
-    prompt: str,
-    num_images_per_prompt: int,
-    num_inference_steps: int,
-    guidance_scale: float,
-) -> list[Any]:
-    result = pipe(
-        prompt,
-        num_inference_steps=num_inference_steps,
-        guidance_scale=guidance_scale,
-        num_images_per_prompt=num_images_per_prompt,
-    )
-    return result.images
-
 
 def get_product_display_name(product: dict[str, Any], fallback_index: int) -> str:
     candidates = [
@@ -226,9 +192,13 @@ def run() -> int:
         logger.warning("No products found in %s", input_path)
         return 0
 
-    logger.info("Loading SDXL model...")
-    pipe = load_model()
-    logger.info("Processing %s products from %s", len(products), input_path)
+    try:
+        client = get_client()
+    except Exception as exc:
+        logger.error("Unable to initialize OpenAI client: %s", exc)
+        return 1
+
+    logger.info("Processing %s products from %s with DALL-E 3", len(products), input_path)
 
     success_count = 0
     skipped_count = 0
@@ -240,15 +210,12 @@ def run() -> int:
 
         try:
             prompt = generate_prompt(product)
-            images = generate_image(
-                pipe=pipe,
-                prompt=prompt,
-                num_images_per_prompt=args.images_per_product,
-                num_inference_steps=args.num_inference_steps,
-                guidance_scale=args.guidance_scale,
-            )
             output_stem = build_output_stem(product, index)
-            saved_paths = save_generated_images(images, output_dir, output_stem)
+            saved_paths = []
+            for image_index in range(1, args.images_per_product + 1):
+                image_url = generate_image(prompt=prompt, client=client)
+                image_stem = output_stem if args.images_per_product == 1 else f"{output_stem}_{image_index}"
+                saved_paths.append(download_image(image_url, output_dir, image_stem))
             logger.info(
                 "Saved %s image(s) for '%s': %s",
                 len(saved_paths),

@@ -1,5 +1,2 @@
-torch
-diffusers
-transformers
-accelerate
-safetensors
+openai
+python-dotenv
